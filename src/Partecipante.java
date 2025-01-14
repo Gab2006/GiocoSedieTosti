@@ -11,7 +11,7 @@ class Partecipante extends Thread
 	}
 
 	public void run() {
-
+            Scrittore scrittore = new Scrittore("risultati.txt");
 		try {
 			sleep((int) (Math.random() * 1000));
 
@@ -19,12 +19,15 @@ class Partecipante extends Thread
 				if (sedie[i].occupa()) {
 					System.out.println("Sono il Thread " + this.getName()
 							+ ". Sono riuscito a sedermi sul posto " + i);
+                                                        scrittore.scrivi("Sono il Thread " + this.getName()
+							+ ". Sono riuscito a sedermi sul posto " + i);
 					return;
 				}
 			}
 			System.out.println("Sono il Thread " + this.getName()
 					+ ". Ho perso :((((");
-
+                                scrittore.scrivi("Sono il Thread " + this.getName()
+					+ ". Ho perso :((((");
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
